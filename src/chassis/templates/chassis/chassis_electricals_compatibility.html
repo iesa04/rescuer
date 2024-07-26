@@ -1,0 +1,23 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+	<div class="signupwrapper">
+        <h2>Electricals Compatibility </h2>
+        <form action="/chassis/getsuspensioncompatibility" method="POST">      
+        {% csrf_token %}
+            <div class="input-table-scroll">
+                <table class="input-table"> 
+                    {% for electrical_system in electrical_system_data %}
+                        <tr>
+                            <td><input type="checkbox" name="selected_electrical" value="{{ electrical_system.electrical_id }}"></td>
+                            <td>{{ electrical_system.electrical_name }}</td>                    
+                        </tr>
+                    {% endfor %}
+                        <tr><td><input type="submit" value="Save"></td><td></td></tr>
+                    <input type="hidden" name="cid" value="{{cid}}">
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}

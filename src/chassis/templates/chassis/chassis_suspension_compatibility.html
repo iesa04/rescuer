@@ -1,0 +1,33 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+	<div class="signupwrapper">           
+        <form action="/chassis/getaerialscompatibility" method="POST">      
+        {% csrf_token %}
+        <div class="input-table-scroll">    
+            <h2>Front Axle Compatibility </h2> 
+                <table class="input-table"> 
+                {% for suspension in suspension_data %}
+                    <tr>
+                        <td><input type="checkbox" name="selected_fa_suspension" value="{{ suspension.suspension_id }}"></td>
+                        <td>{{ suspension.suspension_name }}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+
+            <h2>Rear Axle Compatibility </h2>
+                <table class="input-table"> 
+                {% for suspension in suspension_data %}
+                    <tr>
+                        <td><input type="checkbox" name="selected_ra_suspension" value="{{ suspension.suspension_id }}"></td>
+                        <td>{{ suspension.suspension_name }}</td>
+                    </tr>
+                {% endfor %}            
+                <tr><td><input type="submit" value="Save"></td><td></td></tr>
+                </table>
+            </div>
+            <input type="hidden" name="cid" value="{{cid}}"> 
+        </form>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+	<h2>
+		View Chassis
+	</h2>
+	<input onclick="window.location.href = '/chassis/create';" type="button" value="Add Chassis"/>
+	<div class="styled-table-scroll">
+		<table class="styled-table">
+			<thead>
+				<tr>
+	        <th>Chassis Name</th>
+	        <th>Frontal Airbags</th>
+	        <th>Seating Capacity</th>
+	        <th>Side Roll Protection</th>
+	        <th>Front GAWR</th>
+	        <th>Rear GAWR</th>
+	        <th>Chassis Cost</th>
+	        <th>Status</th>
+	        <th>Update Status</th>
+	        <th>Delete</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+			{% for chassis in chassis_data %}
+	        <tr>
+	        	<input type="hidden" name="cid" value=""/>
+		        <td><a href="/chassis/get/{{ chassis.cid }}">{{chassis.chassis_name}}</a></td>
+		        <td>{{chassis.frontal_airbags}}</td>
+		        <td>{{chassis.seating_capacity}}</td>
+		        <td>{{chassis.side_roll_protection}}</td>
+		        <td>{{chassis.front_gawr}}</td>
+		        <td>{{chassis.rear_gawr}}</td>
+		        <td>{{chassis.chassis_cost}}</td>
+	          <td>
+		          <select name="status|{{ chassis.cid }}"  id="status|{{ chassis.cid }}" required>
+		            <option value="">--Select Status--</option>
+		            {% for id,name in status_list.items %}
+		                {% if  chassis.status == id  %}
+		                  <option value={{id}} selected>{{name}}</option>
+		                {% else  %}
+		                  <option value={{id}}>{{name}}</option>
+		                {% endif %}
+		            {% endfor %}                            
+		          </select>
+	          </td>
+	          <td><input type="button" value="Update Status" onclick="updateChassisStatus({{chassis.cid}})" /></td>
+		        <td><br/><a href="/chassis/delete/{{ chassis.cid }}">Delete</a></td>
+				</tr>
+	    {% endfor %}
+	  	</tbody>
+		</table>
+	</div>
+</div>
+    <script type="text/javascript">
+        function updateChassisStatus(cid) {
+            selectElement = 
+                  document.getElementById('status|'+cid);
+            status = selectElement.value;
+            url = "/chassis/updatechassisstatus/"+cid+"/"+status;
+            window.location.assign(url)
+        }
+    </script>
+</body>
+{% endblock %}

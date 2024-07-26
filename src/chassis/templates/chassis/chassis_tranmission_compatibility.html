@@ -1,0 +1,23 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+	<div class="signupwrapper">
+        <h2>Transmission Compatibility </h2>
+        <form action="/chassis/getelectricalscompatibility" method="POST">      
+            {% csrf_token %}
+            <div class="input-table-scroll">
+                <table class="input-table"> 
+                {% for transmission in transmission_data %}
+                    <tr>
+                        <td><input type="checkbox" name="selected_transmission" value="{{ transmission.tid }}"></td>
+                        <td>{{ transmission.transmission_name }}</td>                    
+                    </tr>
+                {% endfor %}
+                <tr><td><input type="submit" value="Save"></td><td></td></tr>
+            </table>
+        </div>
+        <input type="hidden" name="cid" value="{{cid}}">
+        </form>
+    </div>
+</body>
+{% endblock %}

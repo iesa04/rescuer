@@ -1,0 +1,40 @@
+{% extends "home/rescuer_base.html" %}
+{% load data_dictionary %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>View Electrical Systems</h2>
+    <input onclick="window.location.href = '/electricalsystem/create';" type="button" value="Add Electrical System"/>
+    <div class="styled-table-scroll">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Electrical Id</th>
+                    <th>Electrical Name</th>
+                    <th>Electrical Cost</th>
+                    <th>Compatibility</th>
+                    <th>Modify Compatibility</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for electrical_system in electrical_system_data %}
+                <tr>
+                    <td>{{ electrical_system.electrical_id }}</td>
+                    <td><a href="/electricalsystem/get/{{ electrical_system.electrical_id }}">{{ electrical_system.electrical_name }}</a></td>
+                    <td>{{ electrical_system.electrical_cost }}</td>
+                    <td>
+                            {% for chassis in chassis_data|lookup:forloop.counter0%}
+                                {{chassis}}<br>
+                            {% endfor %}                   
+                    </td>
+                    <td><a href="/electricalsystem/modifycompatibility/{{electrical_system.electrical_id}}">Modify</a></td>
+                    <td><a href="/electricalsystem/delete/{{ electrical_system.electrical_id }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>    
+</div>
+</body>
+{% endblock %}

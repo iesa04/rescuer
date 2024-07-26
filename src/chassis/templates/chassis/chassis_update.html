@@ -1,0 +1,32 @@
+{% extends "home/rescuer_base.html" %}
+
+{% block content %}
+
+<!--form action="/chassis/create" method='POST'> {% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Save"/>		
+</form-->
+
+<body class="signupbody">
+  <div class="signupwrapper">
+		<h2>Update Chassis </h2>
+		<form action="/chassis/update" method="POST">
+		{% csrf_token %}
+		<div class="input-table-scroll">
+			<table class="input-table">
+				<input type="hidden" name="cid" value = "{{chassis.cid}}"/>
+				<tr><td>Chasssis Name: <font color="red">*</font></td><td><input type="text" name="chassis_name" value = "{{chassis.chassis_name}}"/><br/></td></tr>
+				<tr><td>Frontal Airbags: <font color="red">*</font></td><td><input type="text" name="frontal_airbags" value = "{{chassis.frontal_airbags}}"/><br/></td></tr>
+				<tr><td>Seating Capacity: <font color="red">*</font></td><td><input type="text" name="seating_capacity" value = "{{chassis.seating_capacity}}"/><br/></td></tr>
+				<tr><td>Side Roll Protection: <font color="red">*</font></td><td><input type="text" name="side_roll_protection" value = "{{chassis.side_roll_protection}}"/><br/></td></tr>
+				<tr><td>Front GAWR: <font color="red">*</font></td><td><input type="text" name="front_gawr" value = "{{chassis.front_gawr}}"/><br/></td></tr>
+				<tr><td>Rear GAWR: <font color="red">*</font></td><td><input type="text" name="rear_gawr" value = "{{chassis.rear_gawr}}"/><br/></td></tr>
+				<tr><td>Chassis Cost: <font color="red">*</font></td><td><input type="text" name="chassis_cost" value = "{{chassis.chassis_cost}}"/><br/></td></tr>
+				<tr><td><input type="submit" value="Save"/></td><td><input onclick="window.location.href = '/chassis';" type="button" value="Back"/></td></tr>
+			</table>
+		</div>
+		</form>
+</div>
+</body>
+
+{% endblock %}

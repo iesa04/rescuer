@@ -1,0 +1,53 @@
+{% extends "home/rescuer_base.html" %}
+{% load data_dictionary %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>View Engines</h2>
+    <input onclick="window.location.href = '/engine/create';" type="button" value="Add Engine"/>
+    <div class="styled-table-scroll">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Engine Name</th>
+                    <th>Horsepower</th>
+                    <th>Peak Torque</th>
+                    <th>Dry Weight</th>
+                    <th>Cylinders</th>
+                    <th>Displacement</th>
+                    <th>Clutch Engagement Torque</th>
+                    <th>Governed Speed</th>
+                    <th>Engine Cost</th>
+                    <th>Compatibility</th>
+                    <th>Modify Compatibility</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for engine in engine_data %}
+                <tr>
+                  <td><a href="/engine/get/{{ engine.engine_id }}">{{ engine.engine_name }}</a></td>
+                    <td>{{ engine.horsepower }}</td>
+                    <td>{{ engine.peak_torque }}</td>
+                    <td>{{ engine.dry_weight }}</td>
+                    <td>{{ engine.cylinders }}</td>
+                    <td>{{ engine.displacement }}</td>
+                    <td>{{ engine.clutch_engagement_torque }}</td>
+                    <td>{{ engine.governed_speed }}</td>
+                    <td>{{ engine.engine_cost }}</td>
+                    <td>
+                    
+                            {% for chassis in chassis_data|lookup:forloop.counter0%}
+                                {{chassis}}<br>
+                            {% endfor %}
+                    </td>
+                    <td><a href="/engine/modifycompatibility/{{engine.engine_id}}">Modify</a></td>
+                    <td><a href="/engine/delete/{{ engine.engine_id }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+{% endblock %}

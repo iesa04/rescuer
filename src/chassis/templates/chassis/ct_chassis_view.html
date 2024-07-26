@@ -1,0 +1,31 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+{% load static %}
+
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>Chassis</h2>	
+    	<br/><br/>
+			<div class="gridwrapper">
+			{% for chassis in chassis_data %}		
+				<div class="gridbox">
+					<table class="gridbox_table">
+						<tr>
+							<td>
+								<img src="/static/{{ chassis }}.png" width="100%">
+							</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+							<td>
+								<a href="/CT/get/{{chassis}}">{{chassis}}</a>
+							</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+					</table>
+				</div>
+			{% endfor %}
+			</div>	
+		</div>
+</body>
+{% endblock %}

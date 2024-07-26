@@ -1,0 +1,24 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+	<div class="signupwrapper">
+        <h2>Engine Compatibility </h2>
+        <form action="/chassis/gettransmissioncompatibility" method="POST">      
+            {% csrf_token %}
+            <div class="input-table-scroll">
+              <table class="input-table">               
+                  {% for engine in engine_data %}
+                        <tr>
+                          <td><input type="checkbox" name="selected_engine" value="{{ engine.engine_id }}"></td>
+                          <td>{{ engine.engine_name }}</td>
+                        </tr>
+                  {% endfor %}
+                  </tr>            
+                  <tr><td><input type="submit" value="Save"></td><td></td></tr>
+              </table>
+            </div>
+            <input type="hidden" name="cid" value="{{cid}}">
+        </form>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+<div class="signupwrapper">
+<input onclick="window.location.href = '/CT/chassis';" type="button" value="Back"/>    
+<h2>CHASSIS - {{ chassis_data.1 }}</h2>
+<div class="styled-table-scroll">
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Chassis Name</th>
+            <th>Frontal Airbags</th>
+            <th>Seating Capacity</th>
+            <th>Side Roll Protection</th>
+            <th>Front GAWR</th>
+            <th>Rear GAWR</th>
+            <th>Chassis Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ chassis_data.0 }}</td>
+            <td>{{ chassis_data.1 }}</td>
+            <td>{{ chassis_data.2 }}</td>
+            <td>{{ chassis_data.3 }}</td>
+            <td>{{ chassis_data.4 }}</td>
+            <td>{{ chassis_data.5 }}</td>
+            <td>{{ chassis_data.6 }}</td>
+        </tr>
+ 
+    </tbody>
+</table>
+
+
+<h2>Engine</h2>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Engine Name</th>
+            <th>Horsepower</th>
+            <th>Peak Torque</th>
+            <th>Dry Weight</th>
+            <th>Cylinders</th>
+            <th>Displacement</th>
+            <th>Clutch Engagement Torque</th>
+            <th>Governed Speed</th>
+            <th>Engine Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for engine in engine_list %}
+        <tr>
+            <td>{{ engine.engine_name }}</td>
+            <td>{{ engine.horsepower }}</td>
+            <td>{{ engine.peak_torque }}</td>
+            <td>{{ engine.dry_weight }}</td>
+            <td>{{ engine.cylinders }}</td>
+            <td>{{ engine.displacement }}</td>
+            <td>{{ engine.clutch_engagement_torque }}</td>
+            <td>{{ engine.governed_speed }}</td>
+            <td>{{ engine.engine_cost }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>Transmission</h2>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Transmission Name</th>
+            <th>Transmission Type</th>
+            <th>Gears</th>
+            <th>Max Torque</th>
+            <th>Weight</th>
+            <th>Transmission Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for transmission in transmission_list %}
+        <tr>
+            <td>{{ transmission.transmission_name }}</td>
+            <td>{{ transmission.transmission_type }}</td>
+            <td>{{ transmission.gears }}</td>
+            <td>{{ transmission.max_torque }}</td>
+            <td>{{ transmission.weight }}</td>
+            <td>{{ transmission.transmission_cost }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>Electricals</h2>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Electrical Name</th>
+            <th>Electrical Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for electrical_system in electrical_system_list %}
+        <tr>
+            <td>{{ electrical_system.electrical_name }}</td>
+            <td>{{ electrical_system.electrical_cost }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>Front Axle Suspension</h2>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Suspension Name</th>
+            <th>Suspension Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for suspension in front_suspension_list %}
+        <tr>
+            <td>{{ suspension.suspension_name }}</td>
+            <td>{{ suspension.suspension_cost }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>Rear Axle Suspension</h2>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Suspension Name</th>
+            <th>Suspension Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for suspension in rear_suspension_list %}
+        <tr>
+            <td>{{ suspension.suspension_name }}</td>
+            <td>{{ suspension.suspension_cost }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+</body>
+{% endblock %}
