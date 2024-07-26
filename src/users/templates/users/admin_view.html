@@ -1,0 +1,36 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+	<h2>
+		View Admins
+	</h2>
+	<input onclick="window.location.href = '/users/create';" type="button" value="Add New Admin"/>&nbsp;&nbsp;&nbsp;<input onclick="window.location.href = '/users';" type="button" value="Back"/>
+	<div class="styled-table-scroll">
+		<table class="styled-table">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Password</th>
+					<th>Admin Name</th>
+					<th>Admin Phone</th>
+					<th>Delete</th>
+		    </tr>
+		  </thead>
+		  <tbody>    
+				{% for admin in admin_data %}
+	        <tr>
+		        <td>{{admin.username}}</td>
+		        <td>{{admin.password}}</td>
+		        <td>{{admin.name}}</td>
+		        <td>{{admin.admin_phone_number}}</td>
+		        <td><a href = '/users/delete/{{admin.user_id}}'>Delete</a></td>
+				</tr>
+	    	{% endfor %}
+	    </tbody>
+		</table>
+	</div>
+	<br/><br/>
+</div>
+</body>	
+{% endblock %}

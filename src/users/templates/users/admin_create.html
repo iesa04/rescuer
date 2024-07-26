@@ -1,0 +1,23 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<head>
+<title>Create Admin</title>
+</head>
+<body class="signupbody">
+  <div class="signupwrapper">
+  <h2>Create Admin User </h2>
+  <form action="/users/create" method="POST" name = "admin_create" onsubmit="return validateForm()" >
+  {% csrf_token %}
+    <div class="input-table-scroll">
+      <table class="input-table">
+        <tr><td>Username: <font color="red">*</font></td><td><input type="text" name="username"/></td></tr>
+        <tr><td>Password: <font color="red">*</font></td><td><input type="text" name="password"/></td></tr>
+        <tr><td>Name: <font color="red">*</font></td><td><input type="text" name="name"/></td></tr>
+        <tr><td>Phone Number: <font color="red">*</font></td><td><input type="number" name="phone_number"/></td></tr></td></tr>
+        <tr><td><input type="submit" value="Save"/></td><td><input onclick="window.location.href = '/users/AD';" type="button" value="Back"/></td></tr>
+      </table>
+    </div>
+  </form>
+</div>
+</body>
+{% endblock %}

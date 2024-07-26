@@ -1,0 +1,36 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+	<h2>
+		View Suppliers
+	</h2>
+	<br/><br/>	
+	<input onclick="window.location.href = '/users/create';" type="button" value="Add New Supplier"/>&nbsp;&nbsp;&nbsp;<input onclick="window.location.href = '/users';" type="button" value="Back"/><br/><br/>		
+	<div class="styled-table-scroll">
+		<table class="styled-table">
+			<thead>
+				<tr>
+					<th>User ID</b></th>
+					<th>Username</b></th>
+					<th>Password</b></th>
+					<th>Supplier Name</b></th>
+					<th>Supplier State</b></th>
+		    </tr>
+	   	</thead>
+	   	<tbody>     
+			{% for supplier in supplier_data %}
+	        <tr>
+		        <td>{{supplier.user_id}}</a></td>
+		        <td>{{supplier.username}}</td>
+		        <td>{{supplier.password}}</td>
+		        <td>{{supplier.name}}</td>
+		        <td>{{supplier.supplier_state}}</td>
+				</tr>
+	    {% endfor %}
+	    </tbody>
+		</table>
+	</div>	
+	</div>
+</body>		
+{% endblock %}
