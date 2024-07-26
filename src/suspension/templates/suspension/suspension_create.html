@@ -1,0 +1,19 @@
+{% extends "home/rescuer_base.html" %}
+
+{% block content %}
+<body class="signupbody">
+    <div class="signupwrapper">
+        <h2>Create Suspension</h2>
+        <form action="/suspension/create" method="POST" name="suspension_create" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <div class="input-table-scroll">
+                <table class="input-table"> 
+                    <tr><td>Suspension Name: <font color="red">*</font></td><td><input type="text" name="suspension_name" required /></td></tr>
+                    <tr><td>Suspension Cost: <font color="red">*</font></td><td><input type="number" step="0.01" name="suspension_cost" required /></td></tr>
+                    <tr><td><input type="submit" value="Save"/></td><td><input onclick="window.location.href = '/suspension';" type="button" value="Back"/></td></tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}

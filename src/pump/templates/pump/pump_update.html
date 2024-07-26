@@ -1,0 +1,23 @@
+{% extends "home/rescuer_base.html" %}
+
+{% block content %}
+<head>
+    <title>Update Pump</title>
+</head>
+<body class="signupbody">
+    <div class="signupwrapper">
+        <h2>Update Pump</h2>
+        <form action="/pump/update" method="POST" name="pump_update" onsubmit="return validateForm()">
+            {% csrf_token %}            
+            <input type="hidden" name="pump_id" value="{{ pump.pump_id }}"/>
+            <div class="input-table-scroll">
+                <table class="input-table">   
+                    <tr><td>Pump Name: <font color="red">*</font></td><td><input type="text" name="pump_name" value="{{ pump.pump_name }}"/></td></tr>
+                    <tr><td>Pump Cost: <font color="red">*</font></td><td><input type="number" step="0.01" name="pump_cost" value="{{ pump.pump_cost }}"/></td></tr>
+                    <tr><td><input type="submit" value="Save"/></td><td><input onclick="window.location.href = '/pump';" type="button" value="Back"/></td></tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}

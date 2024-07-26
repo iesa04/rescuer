@@ -1,0 +1,24 @@
+<!-- modify_compatibility.html -->
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+	<div class="signupwrapper">
+        <h2>Chassis Compatibility </h2>
+        <form action="/transmission/modifycompatibility" method="POST" name = "modify_compatibility" >            
+            {% csrf_token %}
+            <div class="input-table-scroll">
+                <table class="input-table">
+                {% for chassis in chassis_data %}
+                    <tr>
+                        <td><input type="checkbox" name="selected_chassis" value="{{ chassis.0 }}" {% if chassis.0 in compatible %}checked{% endif %}></td>
+                        <td>{{ chassis.1 }}</td>                  
+                    </tr>
+                {% endfor %}            
+                    <tr><td><input type="submit" value="Save"></td><td></td></tr>
+                </table>
+            </div>
+            <input type="hidden" name="tid" value="{{tid}}">
+        </form>
+    </div>
+</body>
+{% endblock %}

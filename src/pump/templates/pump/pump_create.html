@@ -1,0 +1,22 @@
+{% extends "home/rescuer_base.html" %}
+
+{% block content %}
+<head>
+    <title>Create Pump</title>
+</head>
+<body class="signupbody">
+    <div class="signupwrapper">
+    <h2>Create Pump</h2>
+        <form action="/pump/create" method="POST" name="pump_create" onsubmit="return validateForm()">
+        {% csrf_token %}
+            <div class="input-table-scroll">
+                <table class="input-table">    
+                    <tr><td>Pump Name: <font color="red">*</font></td><td><input type="text" name="pump_name" required /></td></tr>
+                    <tr><td>Pump Cost: <font color="red">*</font></td><td><input type="number" step="0.01" name="pump_cost" required /></td></tr>
+                    <tr><td><input type="submit" value="Save"/></td><td><input onclick="window.location.href = '/pump';" type="button" value="Back"/><br/></td></tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}

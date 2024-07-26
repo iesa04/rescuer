@@ -1,0 +1,46 @@
+{% extends "home/rescuer_base.html" %}
+{% load data_dictionary %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>View Transmissions</h2>
+    <input onclick="window.location.href = '/transmission/create';" type="button" value="Add Transmission"/>
+    <div class="styled-table-scroll">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Transmission Name</th>
+                    <th>Transmission Type</th>
+                    <th>Gears</th>
+                    <th>Max Torque</th>
+                    <th>Weight</th>
+                    <th>Transmission Cost</th>
+                    <th>Compatibility</th>
+                    <th>Modify Compatibility</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for transmission in transmission_data %}
+                <tr>
+                    <td><a href="/transmission/get/{{ transmission.tid }}">{{ transmission.transmission_name }}</a></td>
+                    <td>{{ transmission.transmission_type }}</td>
+                    <td>{{ transmission.gears }}</td>
+                    <td>{{ transmission.max_torque }}</td>
+                    <td>{{ transmission.weight }}</td>
+                    <td>{{ transmission.transmission_cost }}</td>
+                    <td>
+                            {% for chassis in chassis_data|lookup:forloop.counter0%}
+                                {{chassis}}<br>
+                            {% endfor %}                    
+                    </td>
+                    <td><a href="/transmission/modifycompatibility/{{transmission.tid}}">Modify</a></td>
+                    <td><a href="/transmission/delete/{{ transmission.tid }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+{% endblock %}

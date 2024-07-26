@@ -1,0 +1,49 @@
+{% extends "home/rescuer_base.html" %}
+{% load data_dictionary %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+	<h2>
+		View Suspension
+	</h2>
+	<input onclick="window.location.href = '/suspension/create';" type="button" value="Add Suspension"/>
+	<div class="styled-table-scroll">
+		<table class="styled-table">
+			<thead>
+				<tr>
+					<th>Suspension Id</th>
+					<th>Suspension Name</th>
+		            <th>Suspension Cost</th>
+		            <th>Front Axle Compatability</th>
+		            <th>Rear Axle Compatibility</th>
+		            <th>Modify</th>
+		            <th>Delete</th>
+		         </tr>
+		    </thead>
+		    <tbody>
+			{% for suspension in suspension_data %}
+	        <tr>
+	        	<input type="hidden" name="cid" value=""/>
+	        	<td>{{ suspension.suspension_id }}</td>
+		        <td><a href="/suspension/get/{{ suspension.suspension_id }}">{{suspension.suspension_name}}</a></td>
+		        <td>{{suspension.suspension_cost}}</td>
+		        <td>
+	                        {% for chassis in chassis_front|lookup:forloop.counter0%}
+	                            {{chassis}}<br>
+	                        {% endfor %}
+		        </td>
+	   	        <td>
+	                        {% for chassis in chassis_rear|lookup:forloop.counter0%}
+	                            {{chassis}}<br>
+	                        {% endfor %}
+		        </td>
+	            <td><a href="/suspension/getfacompatibility/{{ suspension.suspension_id }}">Modify</a></td>	        
+		        <td><br/><a href="/suspension/delete/{{ suspension.suspension_id }}">Delete</a></td>
+			</tr>
+	    	{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+{% endblock %}

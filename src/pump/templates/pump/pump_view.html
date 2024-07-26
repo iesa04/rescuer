@@ -1,0 +1,40 @@
+{% extends "home/rescuer_base.html" %}
+{% load data_dictionary %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>View Pumps</h2>
+    <input onclick="window.location.href = '/pump/create';" type="button" value="Add Pump"/>
+    <div class="styled-table-scroll">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Pump Id</th>
+                    <th>Pump Name</th>
+                    <th>Pump Cost</th>
+                    <th>Compatibility</th>
+                    <th>Modify Compatibility</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for pump in pump_data %}
+                <tr>
+                    <td>{{ pump.pump_id }}</td>
+                    <td><a href="/pump/get/{{ pump.pump_id }}">{{ pump.pump_name }}</a></td>
+                    <td>{{ pump.pump_cost }}</td>
+                    <td>
+                            {% for aerial in aerial_data|lookup:forloop.counter0%}
+                                {{aerial}}<br>
+                            {% endfor %}                   
+                    </td>
+                    <td><a href="/pump/modifycompatibility/{{pump.pump_id}}">Modify</a></td>
+                    <td><a href="/pump/delete/{{ pump.pump_id }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+</body>
+{% endblock %}
