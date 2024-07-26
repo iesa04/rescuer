@@ -1,0 +1,39 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+{% load tag_library %}
+
+<body class="signupbody">
+  <div class="signupwrapper">
+  <h2>Select Your Front Suspension:</h2>
+    <form id="frontSuspForm" action="/CT/orders/new/rear_suspension" method="post">
+    	{% csrf_token %}
+      <input type="hidden" value="{{aerial_id}}" name="aerial">
+      <input type="hidden" value="{{cid}}" name="chassis">
+      <input type="hidden" value="{{engine_id}}" name="engine">
+      <input type="hidden" value="{{tid}}" name="transmission">
+      <input type="hidden" value="{{electrical_id}}" name="electrical">
+      <div class="input-table-scroll">
+        <table class="input-table">
+        {% for front_suspension in front_suspension_list %}
+          <tr>
+            <td>
+              {% if front_suspension.0 == request.GET.front_suspension|to_int %}
+                <input type="radio" id="{{ front_suspension.0 }}" name="front_suspension" value="{{ front_suspension.0 }}" required checked>
+              {% else %}
+                <input type="radio" id="{{ front_suspension.0 }}" name="front_suspension" value="{{ front_suspension.0 }}" required>
+              {% endif %}                
+            </td>
+            <td>{{ front_suspension.1 }}</td>
+          </tr>
+        {% endfor %}
+          <tr>
+            <td><input type="submit" value="Next"/></td>
+            <td><input onclick="window.location.href = '/CT/orders/new/electrical_system?aerial={{aerial_id}}&chassis={{cid}}&engine={{engine_id}}&transmission={{tid}}&electrical={{electrical_id}}';" type="button" value="Back"/></td>            
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

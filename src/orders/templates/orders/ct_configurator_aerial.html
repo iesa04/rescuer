@@ -1,0 +1,33 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+{% load tag_library %}
+<body class="signupbody">
+  <div class="signupwrapper">
+  <h2>Select Your Aerial:</h2>
+    <form id="aerialForm" action="/CT/orders/new/chassis" method="post">
+    	{% csrf_token %}
+      <div class="input-table-scroll">
+        <table class="input-table"> 
+        {% for aerial in aerial_list %}
+          <tr>
+            <td>
+              {% if aerial.0 == aerial_id|to_int %}
+                <input type="radio" id="{{ aerial.0 }}" name="aerial" value="{{ aerial.0 }}" required checked>
+              {% else %}
+                <input type="radio" id="{{ aerial.0 }}" name="aerial" value="{{ aerial.0 }}" required>
+              {% endif %}           
+            </td>
+            <td>{{ aerial.1 }}</td>
+          </tr>
+        {% endfor %}
+          <tr>            
+            <td><input type="submit" value="Next"/></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

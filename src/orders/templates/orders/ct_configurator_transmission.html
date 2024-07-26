@@ -1,0 +1,37 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+{% load tag_library %}
+
+<body class="signupbody">
+  <div class="signupwrapper">
+  <h2>Select Your Transmission:</h2>
+    <form id="transmissionForm" action="/CT/orders/new/electrical_system" method="post">
+    	{% csrf_token %}
+      <input type="hidden" value="{{aerial_id}}" name="aerial">
+      <input type="hidden" value="{{cid}}" name="chassis">
+      <input type="hidden" value="{{engine_id}}" name="engine">
+      <div class="input-table-scroll">
+        <table class="input-table">
+        {% for transmission in transmission_list %}
+          <tr>
+            <td>
+              {% if transmission.0 == request.GET.transmission|to_int %}
+                <input type="radio" id="{{ transmission.0 }}" name="transmission" value="{{ transmission.0 }}" required checked>
+              {% else %}
+                <input type="radio" id="{{ transmission.0 }}" name="transmission" value="{{ transmission.0 }}" required>
+              {% endif %}               
+            </td>
+            <td>{{ transmission.1 }}</td>
+          </tr>
+        {% endfor %}
+          <tr>
+            <td><input type="submit" value="Next"/></td>
+            <td><input onclick="window.location.href = '/CT/orders/new/engine?aerial={{aerial_id}}&chassis={{cid}}&engine={{engine_id}}';" type="button" value="Back"/></td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

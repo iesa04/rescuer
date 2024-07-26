@@ -1,0 +1,46 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>Order Details</h2>
+    <div class="styled-table-scroll">
+        <input onclick="window.location.href = '/{{request.session.user_type_code}}/orders';" type="button" value="Back"/>
+        <br/><br/>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Aerial</th>
+                    <th>Chassis</th>
+                    <th>Engine</th>
+                    <th>Transmission</th>
+                    <th>Electrical System</th>
+                    <th>Front Axle Suspension</th>
+                    <th>Rear Axle Suspension</th>
+                    <th>Pump</th>
+                    <th>Quantity</th>
+                    <th>Sub Cost</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order in orders_data %}
+                <tr>
+                    <td>{{ order.0 }}</td>
+                    <td>{{ order.1 }}</td>
+                    <td>{{ order.2 }}</td>
+                    <td>{{ order.3 }}</td>
+                    <td>{{ order.4 }}</td>
+                    <td>{{ order.5 }}</td>
+                    <td>{{ order.6 }}</td>
+                    <td>{{ order.7 }}</td>
+                    <td>{{ order.8 }}</td>
+                    <td>{{ order.9 }}</td>
+                    <td>{{ order.10 }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+{% endblock %}

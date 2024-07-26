@@ -1,0 +1,36 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+{% load tag_library %}
+
+<body class="signupbody">
+  <div class="signupwrapper">
+  <h2>Select Your Chassis:</h2>
+    <form id="chassisForm" action="/CT/orders/new/engine" method="post">
+    	{% csrf_token %}
+    	<input type="hidden" id="{{aerial_id}}" name="aerial", value = "{{aerial_id}}">
+      <div class="input-table-scroll">
+        <table class="input-table"> 
+          
+        {% for chassisitem in chassis_list %}
+          <tr>
+            <td>
+              {% if chassisitem.0 == request.GET.chassis|to_int %}
+                <input type="radio" id="{{ chassisitem.0 }}" name="chassis" value="{{ chassisitem.0 }}" required checked>
+              {% else %}
+                <input type="radio" id="{{ chassisitem.0 }}" name="chassis" value="{{ chassisitem.0 }}" required>
+              {% endif %}                  
+            </td>
+            <td>{{ chassisitem.1 }}</td>
+          </tr>
+        {% endfor %}
+          <tr>
+            <td><input type="submit" value="Next"/></td>
+            <td><input onclick="window.location.href = '/CT/orders/new/aerial?aerial={{aerial_id}}';" type="button" value="Back"/></td>            
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

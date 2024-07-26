@@ -1,0 +1,72 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+{% load static %}
+
+<body class="signupbody">
+  <div class="signupwrapper" >
+	<h2>
+		Welcome {{request.session.username }}
+	</h2>
+		<table>
+			<tr>
+				<td width="100%">
+	          At Rescuer, we understand the critical role fire trucks play in safeguarding communities. Our web application empowers you to configure and order the perfect fire truck tailored to your specific needs.  Rescuer is your trusted partner in ensuring the safety and preparedness of your team.
+						<br/><br/>						
+						<table>
+							<tr>
+								<td>
+									<img src="{% static 'landing_image.jpg' %}"  width="400" height="350" />
+								</td>								
+								<td>
+									<table>
+										<tr>
+											<td colspan="6">
+												<label>&nbsp;</label>
+											</td>
+										</tr>										
+										<tr>
+											<td>
+												<img src="{% static 'arrow.jpeg' %}" width="100%" />
+											</td>
+											<td>
+												User-Friendly Interface: The configurator boasts an intuitive and user-friendly interface, ensuring that even non-technical users can easily navigate and make selections. This inclusivity is essential for involving a diverse range of stakeholders in the customization process
+											</td>
+										</tr>
+										<tr><td colspan="2">&nbsp;</td></tr>
+										<tr>
+											<td>
+												<img src="{% static 'arrow.jpeg' %}" width="100%" />
+											</td>								
+											<td>
+												Component Compatibility Checker: To ensure that the selected components and features work seamlessly together, the configurator includes a compatibility checker. This feature helps prevent issues related to integration and functionality, enhancing the overall reliability of the fire trucks.
+											</td>
+										</tr>
+										<tr><td colspan="2">&nbsp;</td></tr>
+										<tr>
+											<td>
+													<img src="{% static 'arrow.jpeg' %}" width="100%" />
+												</td>								
+												<td>
+													Manage Orders: Orders created by Fire department can be managed here. Flexibile status management has been designed. 
+												</td>
+											</tr>
+											<tr><td colspan="2">&nbsp;</td></tr>
+											<tr>
+												<td>
+													<img src="{% static 'arrow.jpeg' %}" width="100%" />
+												</td>									
+												<td>
+													Modular Design Options: The configurator offers a modular design approach, allowing users to choose from a variety of predefined modules and components. These modules cover a wide range of functionalities, including aerial, chassis, engine, electrical system, and many more. This modular approach ensures flexibility and adaptability in designing fire trucks for diverse operational scenarios.
+												</td>					
+											</tr>																
+										</table>
+									</td>
+								</tr>
+							</table>
+					</td>
+			</tr>
+		</table>
+  </div>
+</body>
+
+{% endblock %}

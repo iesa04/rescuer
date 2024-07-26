@@ -1,0 +1,90 @@
+{% extends "home/customer_base.html" %}
+{% block content %}
+{% load static %}
+
+<body class="signupbody">
+  <div class="signupwrapper" >
+		<h2>
+			Welcome {{request.session.username }}	
+		</h2>
+		<table>
+			<tr>
+				<td width="100%">
+	          At Rescuer, we understand the critical role fire trucks play in safeguarding communities. Our web application empowers you to configure and order the perfect fire truck tailored to your specific needs.  Rescuer is your trusted partner in ensuring the safety and preparedness of your team.
+						<br/><br/>						
+						<table>
+							<tr>
+								<td>
+									<img src="{% static 'Image3.png' %}"  width="400" height="350" />
+								</td>								
+								<td>
+									<table>
+										<tr>
+											<td colspan="6">
+												<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Why Choose Rescuer?</b>
+											</td>
+										</tr>		
+										<tr>
+											<td colspan="6">
+												<label>&nbsp;</label>
+											</td>
+										</tr>																			
+										<tr>
+											<td>
+												<img src="{% static 'arrow.jpeg' %}" width="100%" />
+											</td>
+											<td style="vertical-align: middle">
+												Tailored Solutions: Fire departments can design trucks that specifically cater to their unique challenges, ensuring that they have the right tools and equipment for various emergency scenarios.
+											</td>
+										<!--/tr>
+										<tr-->
+											<td>
+												<img src="{% static 'arrow.jpeg' %}" width="100%" />
+											</td>								
+											<td style="vertical-align: middle">
+												Time and Cost Savings: The digital configurator reduces the time and costs associated with the traditional procurement process, enabling quicker deployment of customised fire trucks.
+											</td>
+										<!--/tr>
+										<tr-->
+											<td>
+													<img src="{% static 'arrow.jpeg' %}" width="100%" />
+												</td>								
+												<td style="vertical-align: middle">
+													Cost Estimation: The configurator provides real-time cost estimations based on the selected components, allowing fire departments to stay within budget constraints while still meeting their operational needs.
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<img src="{% static 'arrow.jpeg' %}" width="100%" />
+												</td>									
+												<td style="vertical-align: middle">
+													Enhanced Collaboration: The platform encourages collaboration and communication between stakeholders, fostering a more comprehensive understanding of the firefighting requirements.
+												</td>
+											<!--/tr>
+											<tr-->
+												<td>
+													<img src="{% static 'arrow.jpeg' %}" width="100%" />
+												</td>									
+												<td style="vertical-align: middle">
+													Future-Proofing: The configurator is designed to accommodate technological advancements and evolving firefighting needs, ensuring that fire trucks remain effective and relevant over time.
+												</td>
+											<!--/tr>
+											<tr-->
+												<td>
+													<img src="{% static 'arrow.jpeg' %}" width="100%" />
+												</td>									
+												<td style="vertical-align: middle">
+													Optimized Operational Capabilities: With the ability to customize every aspect of the fire truck, agencies can optimize its operational capabilities. Whether it's tailoring the vehicle for urban firefighting, wildland operations, or hazardous materials response, the configurator allows agencies to design a vehicle that aligns precisely with their specific operational requirements.
+												</td>
+											</tr>																
+										</table>
+									</td>
+								</tr>
+							</table>
+					</td>
+			</tr>
+		</table>
+  </div>
+</body>
+
+{% endblock %}

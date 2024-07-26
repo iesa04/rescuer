@@ -1,0 +1,69 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+  	<h2>Configuration Summary</h2>
+  <div class="input-table-scroll">
+    <table class="input-table">
+      <tr>
+        <td><label>Aerial</label></td>
+        <td>{{order_summary.0}}</td>
+      </tr>
+      <tr>
+        <td><label>Chassis</label></td>
+        <td>{{order_summary.1}}</td>
+      </tr>
+      <tr>
+        <td><label>Engine</label></td>
+        <td>{{order_summary.2}}</td>
+      </tr>
+      <tr>
+        <td><label>Transmission</label></td>
+        <td>{{order_summary.3}}</td>
+      </tr>
+      <tr>
+        <td><label>Electrical System</label></td>
+        <td>{{order_summary.4}}</td>
+      </tr>
+      <tr>
+        <td><label>Front Axle Suspension</label></td>
+        <td>{{order_summary.5}}</td>
+      </tr>
+      <tr>
+        <td><label>Rear Axle Suspension</label></td>
+        <td>{{order_summary.6}}</td>
+      </tr>
+      <tr>
+        <td><label>Pump</label></td>
+        <td>{{order_summary.7}}</td>
+      </tr>
+      <tr>
+        <td><label>Quantity</label></td>
+        <td>{{order_summary.8}}</td>
+      </tr>      
+      <tr>
+        <td><label>Cost</label></td>
+        <td>Rs.{{order_summary.9}}</td>
+      </tr>
+      <tr>
+        <td><label>Total Cost</label></td>
+        <td>Rs.{{order_summary.10}}</td>
+      </tr>
+    </table>
+  </div>
+  <form id="cartForm" action="/CT/orders/cart" method="post">
+  	{% csrf_token %}
+    <input type="hidden" value="{{aerial_id}}" name="aerial">
+    <input type="hidden" value="{{cid}}" name="chassis">
+    <input type="hidden" value="{{engine_id}}" name="engine">
+    <input type="hidden" value="{{tid}}" name="transmission">
+    <input type="hidden" value="{{electrical_id}}" name="electrical">
+    <input type="hidden" value="{{front_suspension_id}}" name="front_suspension">
+    <input type="hidden" value="{{rear_suspension_id}}" name="rear_suspension">
+    <input type="hidden" value="{{pump_id}}" name="pump">  
+   	<input type="hidden" value="{{quantity}}" name="quantity">     	
+	<input type="submit" value="Add to Cart"/>
+</form>
+</div>
+</body>
+{% endblock %}

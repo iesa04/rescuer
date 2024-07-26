@@ -1,0 +1,29 @@
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'loginstyle.css' %}" rel="stylesheet" type="text/css">
+    <title>Login</title>
+</head>
+<body>
+    
+    <div class="login-card">
+        <h2>Login</h2>
+        <h3>Enter your credentials</h3>
+        <h4>{{error_message}}</h4>
+        <form action="validatelogin" method="POST" name = "login" onsubmit= "return validateForm()" class="login-form">
+            {% csrf_token %}
+
+            <input type="text" placeholder="Username" name = "username" required>
+            <input type="password" placeholder="Password" name = "password" required>
+            <a href="/login/signup">SIGN UP?</a>
+            <a href="/rescuer">Return to home page</a>
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

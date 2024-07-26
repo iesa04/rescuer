@@ -1,0 +1,69 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+
+
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>View Placed Orders</h2>
+    <table class="styled-table">
+        <tr>
+            <td>
+                Filter by Order Id: <input type="text" id="filterOrder" onkeyup="filterBy('filterOrder',0);document.getElementById('filterStatus').value='';" placeholder="Search for order id.." title="Type in a name">
+            </td>
+            <td>
+                Order Status: <input type="text" id="filterStatus" onkeyup="filterBy('filterStatus',2);document.getElementById('filterOrder').value='';" placeholder="Search for order status.." title="Type in a name">
+            </td>             
+            <td>
+                <label>Total No of Orders:&nbsp;&nbsp;</label><label id="no_of_rec">{{no_of_rec}}</label>
+            </td>
+        </tr>
+    </table>    
+    <div class="styled-table-scroll">    
+        <table class="styled-table" id="myTable">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>Status</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>               
+            {% for order in orders_data %}
+                <tr>
+                    <td><a href="/CT/orders/detail/{{order.0}}">{{ order.0 }}</a></td>
+                    <td>{{ order.1 }}</td>
+                    <td>{{ order.2 }}</td>
+                    <td>{{ order.3 }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script>
+function filterBy(inputId,columnId) {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById(inputId);
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  counter=0;
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[columnId];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      //if (txtValue.toUpperCase()== filter) {
+      if(txtValue.toUpperCase().indexOf(filter) > -1) {
+        counter =counter+ 1;
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+  document.getElementById("no_of_rec").innerText=counter;
+}
+</script>
+{% endblock %}

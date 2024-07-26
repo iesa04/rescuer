@@ -1,0 +1,53 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+	<h2>Order Summary </h2>
+	  <form id="orderForm" action="/CT/orders/cart/placeorder" method="post">
+	  	{%csrf_token%}
+	  	<div class="styled-table-scroll">
+	    	<table class="styled-table">
+	        <thead>
+	            <tr>
+	            	<th>Aerial</th>
+	            	<th>Chassis</th>
+	            	<th>Engine</th>
+	            	<th>Transmission</th>
+	            	<th>Electrical System</th>
+	            	<th>Front Axle Suspension</th>
+	            	<th>Rear Axle Suspension</th>
+	            	<th>Pump</th>
+					<th>Quantity</th>
+	            	<th>Sub Cost</th>
+	            	<th>Cost</th>
+	            	<th>Delete</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        	{% for order in order_summary %}
+	           <tr>
+	           		{% for item in order %}
+	           		<td>
+	           			{{ item }}
+	           		</td>	
+	           		{% endfor %}                            
+	           		<td>
+	           			<a href="/CT/orders/cart/delete/{{ forloop.counter0 }}">Delete</a>
+	           		</td>
+	           	</tr>  
+	           {% endfor %}   
+	           {% if order_summary %}        
+	           <tr><td><input type="submit" value="Place Order"/></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	           {% endif %}
+	          </tbody>        
+			</table>
+		</div>
+		<!-- Display the button if order summary is not empty -->
+		{% if order_summary %}
+			<table></table>
+		{% endif %}
+
+	</form>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% load static %}
+{% load cart_items %}
+<!-- Check if user is logged in other wise redirect to home page -->
+{% if request.session.username == None %}
+<script>
+  //window.location.assign("/rescuer")
+</script>
+{% endif %}
+<!--header class="header"-->
+  <link  href="{% static 'rescuerviewstyle.css' %}" rel="stylesheet" type="text/css">
+    {% include "home/title.html" %} 
+  <nav>
+    <div class="header">      
+      <img src="{% static 'logo.png' %}" width="130" height="60" />
+      <div class="header-right">
+        <!-- Check if user type is ADMIN then display following menu -->
+          {% if request.session.user_type_code == 'AD' %}
+            <a href="/login/home">Home</a>            
+            <a href="/chassis">Chassis</a>
+            <a href="/engine">Engine</a>
+            <a href="/transmission">Transmission</a>
+            <a href="/electricalsystem">Electricals</a>
+            <a href="/suspension">Suspension</a>
+            <a href="/aerials">Aerials</a>
+            <a href="/pump">Pump</a>
+            <a href="/AD/orders">Orders</a>
+            <a href="/users">Users</a>
+          {% elif request.session.user_type_code == 'CT' %}
+            <a href="/login/home">Home</a>
+            <a href="/CT/chassis">Chassis</a>
+            <a href="/CT/aerials">Aerials</a>
+            <a href="/CT/orders">Order List</a>
+            <a href="/CT/orders/new/aerial">Order</a>
+            <a href="/CT/orders/cart"><!--img src="{% static 'cart.png' %}" width=80 height=40 /-->Cart ({{request.session.order_summary|count_iems}})</a>
+          {% endif %}
+          <a href="/logout">Logout</a>        
+      </div>
+    </div>
+  </nav>
+<!--/header-->
+  <br/><br/><br/>

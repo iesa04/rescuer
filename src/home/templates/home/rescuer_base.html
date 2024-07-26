@@ -1,0 +1,17 @@
+{% load static %}
+<!-- Check if user type is ADMIN other wise redirect to home page -->
+{% if request.session.user_type_code == 'CT' %}
+<script>
+  //window.location.assign("/rescuer")
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+  {% include "home/rescuer_header.html" %} 
+ 
+   {% block content %} 
+
+    {% endblock %} 
+
+  {% include "home/footer.html" %}    
+</html>
