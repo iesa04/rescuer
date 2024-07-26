@@ -1,0 +1,30 @@
+{% extends "home/rescuer_base.html" %}
+{% load data_dictionary %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+      <h2>Aerials</h2>
+      <br/><br/>       
+      <div class="gridwrapper">
+      {% for class in aerials_class_data %}   
+        <div class="gridbox">
+            <table class="gridbox_table">
+              <tr>
+                <td>
+                    <img src="/static/{{aerials_class_data|lookup:class}}.png" width="100%">
+                  </td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                  <td>
+                    <a href="/CT/aerials/get/{{class}}">{{aerials_class_data|lookup:class}}</a>
+                </td>
+              </tr>
+              <tr><td>&nbsp;</td></tr>
+            </table>
+          </div>
+      {% endfor %}
+      </div>  
+    </div>
+  </body>
+{% endblock %}

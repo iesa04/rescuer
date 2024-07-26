@@ -1,0 +1,62 @@
+{% extends "home/rescuer_base.html" %}
+{% load data_dictionary %}
+{% block content %}
+<body class="signupbody">
+<div class="signupwrapper">
+<h2>View Aerials - {{ aerials_class_data|lookup:aerial_class }}</h2>
+<input onclick="window.location.href = '/CT/aerials';" type="button" value="Back"/>
+<div class="styled-table-scroll">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Aerial Name</th>
+                <th>Basket</th>
+                <th>H-Style Jack</th>
+                <th>Downjack</th>
+                <th>Stabilizer Spread</th>
+                <th>Structural Ladder Warranty</th>
+                <th>Flow Capacity</th>
+                <th>Minimum Angle</th>
+                <th>Maximum Angle</th>
+                <th>Wind Rating</th>
+                <th>Ice Rating</th>
+                <th>Horizontal Ladder Reach</th>
+                <th>Vertical Ladder Reach</th>
+                <th>Dry Payload Capacity</th>
+                <th>Wet Payload Capacity</th>
+                <th>Tank</th>
+                <th>Aerial Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for aerial in aerial_data %}
+        {% if aerial.class_id == aerial_class %}
+            {% if aerial.status == 'ACTIVE' %}
+            <tr>
+                <td>{{ aerial.aerial_name }}</td>
+                <td>{{ aerial.basket }}</td>
+                <td>{{ aerial.hstyle_jack }}</td>
+                <td>{{ aerial.downjack }}</td>
+                <td>{{ aerial.stabilizer_spread }}</td>
+                <td>{{ aerial.structural_ladder_warranty }}</td>
+                <td>{{ aerial.flow_capacity }}</td>
+                <td>{{ aerial.minimum_angle }}</td>
+                <td>{{ aerial.maximum_angle }}</td>
+                <td>{{ aerial.wind_rating }}</td>
+                <td>{{ aerial.ice_rating }}</td>
+                <td>{{ aerial.horizontal_ladder_reach }}</td>
+                <td>{{ aerial.vertical_ladder_reach }}</td>
+                <td>{{ aerial.dry_payload_capacity }}</td>
+                <td>{{ aerial.wet_payload_capacity }}</td>
+                <td>{{ aerial.tank }}</td>
+                <td>{{ aerial.aerial_cost }}</td>
+            </tr>
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+</body>
+{% endblock %}

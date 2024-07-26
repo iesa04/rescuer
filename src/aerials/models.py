@@ -1,0 +1,23 @@
+from django.db import models
+
+class Aerial(models.Model):
+    aerial_id = models.IntegerField()
+    class_id = models.IntegerField()
+    aerial_name = models.CharField(max_length=60)
+    basket = models.DecimalField(max_digits=10, decimal_places=2)
+    hstyle_jack = models.IntegerField()
+    downjack = models.IntegerField()
+    stabilizer_spread = models.FloatField()
+    structural_ladder_warranty = models.IntegerField()
+    flow_capacity = models.IntegerField()
+    minimum_angle = models.FloatField()
+    maximum_angle = models.FloatField()
+    wind_rating = models.FloatField()
+    ice_rating = models.FloatField()
+    horizontal_ladder_reach = models.FloatField()
+    vertical_ladder_reach = models.FloatField()
+    dry_payload_capacity = models.IntegerField()
+    wet_payload_capacity = models.IntegerField()
+    tank = models.IntegerField()
+    aerial_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=20)

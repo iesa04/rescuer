@@ -1,0 +1,64 @@
+{% extends "home/rescuer_base.html" %}
+{% load data_dictionary %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>View Aerials</h2>
+    <input onclick="window.location.href = '/aerials/create';" type="button" value="Add Aerial"/>
+    <div class="styled-table-scroll">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Aerial sId</th>
+                <th>Aerial Class</th>
+                <th>Aerial Name</th>
+                <th>Compatibility</th>
+                <th>Modify Compatibility</th>
+                <th>Status</th>
+                <th>Update Status</th>                
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for aerial in aerial_data %}
+            <tr>
+                <td>{{ aerial.aerial_id }}</td>
+                <td>{{ aerials_class_data|lookup:aerial.class_id}}</td>
+                <td><a href="/aerials/get/{{ aerial.aerial_id }}">{{ aerial.aerial_name }}</a></td>
+                <td>
+                        {% for chassis in chassis_data|lookup:forloop.counter0%}
+                            {{chassis}}<br>
+                        {% endfor %}                   
+                </td>
+                <td><a href="/aerials/modifychassiscompatibility/{{aerial.aerial_id}}">Modify</a></td>
+                <td>
+                  <select name="status|{{ aerial.aerial_id }}"  id="status|{{ aerial.aerial_id }}" required>
+                    <option value="">--Select Status--</option>
+                    {% for id,name in status_list.items %}
+                        {% if  aerial.status == id  %}
+                          <option value={{id}} selected>{{name}}</option>
+                        {% else  %}
+                          <option value={{id}}>{{name}}</option>
+                        {% endif %}
+                    {% endfor %}                            
+                  </select>
+                </td>
+                <td><input type="button" value="Update Status" onclick="updateAerialStatus({{aerial.aerial_id}})" /></td>
+                <td><a href="/aerials/delete/{{ aerial.aerial_id }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+    <script type="text/javascript">
+        function updateAerialStatus(aerial_id) {
+            selectElement = 
+                  document.getElementById('status|'+aerial_id);
+            status = selectElement.value;
+            url = "/aerials/updateaerialstatus/"+aerial_id+"/"+status;
+            window.location.assign(url)
+        }
+    </script>
+</body>
+{% endblock %}

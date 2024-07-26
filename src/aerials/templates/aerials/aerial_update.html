@@ -1,0 +1,84 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>Update Aerial</h2>
+    <form action="/aerials/update" method="POST" name="aerial_update" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <input type="hidden" name="aerial_id" value="{{ aerial.aerial_id }}"/>
+        <div class="input-table-scroll">
+          <table class="input-table">             
+            <tr><td>Class ID: <font color="red">*</font></td><td>
+            <select name="class_id" required>
+              <option value="">--Select Aerial Class--</option>
+              {% for id,name in aerials_class_data.items %}
+                  {% if aerial.class_id == id  %}
+                    <option value={{id}} selected>{{name}}</option>
+                  {% else  %}
+                    <option value={{id}}>{{name}}</option>
+                  {% endif %}
+              {% endfor %}          
+            </select><br/></td></tr>        
+            
+            <tr><td>Aerial Name: <font color="red">*</font></td><td>
+            <input type="text" name="aerial_name" value="{{ aerial.aerial_name }}" required/><br/></td></tr>
+            
+            <tr><td>Basket: <font color="red">*</font></td><td>
+            <input type="number" name="basket" value="{{ aerial.basket }}" required/><br/></td></tr>
+            
+            <tr><td>HStyle Jack: <font color="red">*</font></td><td>
+           
+            <input type="number" name="hstyle_jack" value="{{ aerial.hstyle_jack }}" required/><br/></td></tr>
+            
+            <tr><td>Downjack: <font color="red">*</font></td><td>
+            <input type="number" name="downjack" value="{{ aerial.downjack }}" required/><br/></td></tr>
+            
+            <tr><td>Stabilizer Spread: <font color="red">*</font></td><td>
+            <input type="number" name="stabilizer_spread" value="{{ aerial.stabilizer_spread }}" required/><br/></td></tr>
+            
+            <tr><td>Structural Ladder Warranty: <font color="red">*</font></td><td>
+            <input type="number" name="structural_ladder_warranty" value="{{ aerial.structural_ladder_warranty }}" required/><br/></td></tr>
+            
+            <tr><td>Flow Capacity: </td><td>
+            <input type="number" name="flow_capacity" value="{{ aerial.flow_capacity }}" required/><br/></td></tr>
+            
+            <tr><td>Minimum Angle: <font color="red">*</font></td><td>
+            <input type="number" name="minimum_angle" value="{{ aerial.minimum_angle }}" required/><br/></td></tr>
+            
+            <tr><td>Maximum Angle: <font color="red">*</font></td><td>
+            <input type="number" name="maximum_angle" value="{{ aerial.maximum_angle }}" required/><br/></td></tr>
+            
+            <tr><td>Wind Rating: <font color="red">*</font></td><td>
+            <input type="number" name="wind_rating" value="{{ aerial.wind_rating }}" required/><br/></td></tr>
+            
+            <tr><td>Ice Rating: <font color="red">*</font></td><td>
+            <input type="number" name="ice_rating" value="{{ aerial.ice_rating }}" required/><br/></td></tr>
+            
+            <tr><td>Horizontal Ladder Reach: <font color="red">*</font></td><td>
+            <input type="number" name="horizontal_ladder_reach" value="{{ aerial.horizontal_ladder_reach }}" required/><br/></td></tr>
+            
+            <tr><td>Vertical Ladder Reach: <font color="red">*</font></td><td>
+            <input type="number" name="vertical_ladder_reach" value="{{ aerial.vertical_ladder_reach }}" required/><br/></td></tr>
+            
+            <tr><td>Dry Payload Capacity: <font color="red">*</font></td><td>
+            <input type="number" name="dry_payload_capacity" value="{{ aerial.dry_payload_capacity }}" required/><br/></td></tr>
+            
+            <tr><td>Wet Payload Capacity: <font color="red">*</font></td><td>
+            <input type="number" name="wet_payload_capacity" value="{{ aerial.wet_payload_capacity }}" required/><br/></td></tr>
+            
+            <tr><td>Tank: <font color="red">*</font></td><td>
+            <input type="number" name="tank" value="{{ aerial.tank }}" required/><br/></td></tr>
+            
+            <tr><td>Aerial Cost: <font color="red">*</font></td><td>
+            <input type="number" name="aerial_cost" value="{{ aerial.aerial_cost }}" required/><br/></td></tr>
+            
+            <tr>
+              <td><input type="submit" value="Save"/></td>
+              <td><input onclick="window.location.href = '/aerials';" type="button" value="Back"/></td>
+            </tr>
+          </table>
+        </div>
+    </form>
+  </div>
+</body>
+{% endblock %}

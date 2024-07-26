@@ -1,0 +1,75 @@
+{% extends "home/rescuer_base.html" %}
+{% block content %}
+<body class="signupbody">
+  <div class="signupwrapper">
+    <h2>Create Aerial</h2>
+    <form action="/aerials/create" method="POST" name="aerial_create" onsubmit="return validateForm()">
+        {% csrf_token %}
+      <div class="input-table-scroll">
+        <table class="input-table">          
+          <tr><td>Class ID: <font color="red">*</font></td><td>
+          <select name="class_id" required>
+            <option value="">--Select Aerial Class--</option>
+            {% for id,name in aerials_class_data.items %}
+            <option value={{id}}>{{name}}</option>
+            {% endfor %}
+          </select><br/></td></tr>             
+          <tr><td>Aerial Name: <font color="red">*</font></td><td>
+          <input type="text" name="aerial_name" required/><br/></td></tr>
+          
+          <tr><td>Basket: <font color="red">*</font></td><td>
+          <input type="number" name="basket" required/><br/></td></tr>
+          
+          <tr><td>HStyle Jack: <font color="red">*</font></td><td>
+          <input type="number" name="hstyle_jack" required/><br/></td></tr>
+          
+          <tr><td>Downjack: <font color="red">*</font></td><td>
+          <input type="number" name="downjack" required/><br/></td></tr>
+          
+          <tr><td>Stabilizer Spread: <font color="red">*</font></td><td>
+          <input type="number" name="stabilizer_spread" required/><br/></td></tr>
+          
+          <tr><td>Structural Ladder Warranty: <font color="red">*</font></td><td>
+          <input type="number" name="structural_ladder_warranty" required/><br/></td></tr>
+          
+          <tr><td>Flow Capacity:</td><td>
+          <input type="number" name="flow_capacity" required/><br/></td></tr>
+          
+          <tr><td>Minimum Angle: <font color="red">*</font></td><td>
+          <input type="number" name="minimum_angle" required/><br/></td></tr>
+          
+          <tr><td>Maximum Angle: <font color="red">*</font></td><td>
+          <input type="number" name="maximum_angle" required/><br/></td></tr>
+          
+          <tr><td>Wind Rating: <font color="red">*</font></td><td>
+          <input type="number" name="wind_rating" required/><br/></td></tr>
+          
+          <tr><td>Ice Rating: <font color="red">*</font></td><td>
+          <input type="number" name="ice_rating" required/><br/></td></tr>
+          
+          <tr><td>Horizontal Ladder Reach: <font color="red">*</font></td><td>
+          <input type="number" name="horizontal_ladder_reach" required/><br/></td></tr>
+          
+          <tr><td>Vertical Ladder Reach: <font color="red">*</font></td><td>
+          <input type="number" name="vertical_ladder_reach" required/><br/></td></tr>
+          
+          <tr><td>Dry Payload Capacity: <font color="red">*</font></td><td>
+          <input type="number" name="dry_payload_capacity" required/><br/></td></tr>
+          
+          <tr><td>Wet Payload Capacity: <font color="red">*</font></td><td>
+          <input type="number" name="wet_payload_capacity" required/><br/></td></tr>
+          
+          <tr><td>Tank: <font color="red">*</font></td><td>
+          <input type="number" name="tank" required/><br/></td></tr>
+          
+          <tr><td>Aerial Cost: <font color="red">*</font></td><td>
+          <input type="number" name="aerial_cost" required/><br/></td></tr>
+          
+          <tr><td><input type="submit" value="Save"/>
+          </td><td><input onclick="window.location.href = '/aerials';" type="button" value="Back"/></td></tr>
+        </table>
+      </div>
+    </form>
+  </div>
+</body>
+{% endblock %}
